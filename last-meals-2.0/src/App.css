@@ -15,9 +15,14 @@ input {
   flex-direction: column;
 }
 
+.calendar {
+  height: 60vh;
+  width: 50vw;
+}
+
 .weekdays {
-  height: 20px;
-  width: 83%;
+  width: 99.9%;
+
   font-size: 1.3rem;
   display: flex;
   justify-content: space-around;
@@ -27,7 +32,7 @@ input {
 .grid {
   display: grid;
   grid-template-columns: repeat(7, 1fr);
-  gap: 40px;
+  gap: 10px;
   text-align: center;
 }
 
@@ -36,6 +41,9 @@ input {
   width: 100px;
   border-radius: 20px;
   cursor: pointer;
+}
+.date-div {
+  padding: 10px;
 }
 
 .survey-div {

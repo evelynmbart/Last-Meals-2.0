@@ -7,6 +7,11 @@ export function CalendarWeek({ isSurveyShown, setIsSurveyShown, week }) {
         const weekOffset = week * 7;
         const dayOffset = index + 1;
         const day = weekOffset + dayOffset;
+
+        if (day > 31) {
+          return;
+        }
+
         return (
           <div className="date-div">
             <p>{day}</p>

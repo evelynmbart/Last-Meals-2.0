@@ -9,26 +9,28 @@ function App() {
   const dates = Array(5).fill(0);
   return (
     <div className="main-content">
-      <div className="weekdays">
-        <p>S</p>
-        <p>M</p>
-        <p>T</p>
-        <p>W</p>
-        <p>Th</p>
-        <p>F</p>
-        <p>S</p>
+      <div className="calendar">
+        <div className="weekdays">
+          <h2>S</h2>
+          <h2>M</h2>
+          <h2>T</h2>
+          <h2>W</h2>
+          <h2>Th</h2>
+          <h2>F</h2>
+          <h2>S</h2>
+        </div>
+        {dates.map((_, index) => {
+          return (
+            <CalendarWeek
+              key={index}
+              week={index}
+              isSurveyShown={isSurveyShown}
+              setIsSurveyShown={setIsSurveyShown}
+            />
+          );
+        })}
+        <Survey isSurveyShown={isSurveyShown} />
       </div>
-      {dates.map((_, index) => {
-        return (
-          <CalendarWeek
-            key={index}
-            week={index}
-            isSurveyShown={isSurveyShown}
-            setIsSurveyShown={setIsSurveyShown}
-          />
-        );
-      })}
-      <Survey isSurveyShown={isSurveyShown} />
     </div>
   );
 }
