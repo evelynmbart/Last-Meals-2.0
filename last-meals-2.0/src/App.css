@@ -8,7 +8,7 @@ input {
 }
 
 .main-content {
-  height: 100vh;
+  height: 80vh;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -17,13 +17,13 @@ input {
 
 .calendar {
   height: 60vh;
-  width: 50vw;
+  width: 60vw;
 }
 
 .weekdays {
-  width: 99.9%;
-
   font-size: 1.3rem;
+  width: 60%;
+  min-width: 898.8px;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -42,14 +42,66 @@ input {
   border-radius: 20px;
   cursor: pointer;
 }
+
 .date-div {
   padding: 10px;
 }
 
 .survey-div {
   margin: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.food,
+.location {
+  display: flex;
+  flex-direction: column;
+}
+
+textarea,
+.location,
+.with-who {
+  text-indent: 3px;
+}
+
+.meal-option {
+  padding: 5px 10px;
+}
+
+.accompanied {
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+
+.with-company {
+  display: flex;
+  gap: 10px;
+}
+
+.star-rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.stars {
+  font-size: 1.1rem;
+  color: rgba(128, 128, 128, 0.755);
 }
 
 .star {
   cursor: pointer;
+}
+
+.meal {
+  display: flex;
+  gap: 10px;
 }
