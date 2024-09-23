@@ -2,12 +2,26 @@ html {
   height: 100vh;
 }
 
+button,
+input {
+  cursor: pointer;
+}
+
 .main-content {
   height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+
+.weekdays {
+  height: 20px;
+  width: 83%;
+  font-size: 1.3rem;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
 .grid {
@@ -26,4 +40,8 @@ html {
 
 .survey-div {
   margin: 20px;
+}
+
+.star {
+  cursor: pointer;
 }

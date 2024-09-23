@@ -1,4 +1,26 @@
-export function Survey({ isSurveyShown, setIsSurveyShown }) {
+import { useState } from "react";
+import { FaRegStar, FaStar } from "react-icons/fa";
+
+export function Survey({ isSurveyShown }) {
+  const [starRating, setStarRating] = useState();
+  const [hoverValue, setHoverValue] = useState(undefined);
+
+  const stars = Array(5).fill(0);
+
+  const handleMouseClicked = (value) => {
+    setStarRating(value);
+  };
+
+  const handleMouseEnter = (value) => {
+    setHoverValue(value);
+  };
+
+  const handleMouseLeave = () => {
+    setHoverValue(undefined);
+  };
+
+  console.log(hoverValue, starRating);
+
   return (
     <div
       className="survey-div"
@@ -31,7 +53,30 @@ export function Survey({ isSurveyShown, setIsSurveyShown }) {
           No
           <input type="checkbox" />
         </div>
-        <div>(Star rating: star icons will be here )</div>
+        <div className="star-rating">
+          {stars.map((_, index) => {
+            return (
+              <FaStar
+                key={index}
+                className="star"
+                size={24}
+                style={{
+                  color:
+                    hoverValue > index || (!hoverValue && starRating > index)
+                      ? "#f2c265"
+                      : "#a9a9a9",
+                }}
+                onClick={() => handleMouseClicked(index + 1)}
+                onMouseOver={() => handleMouseEnter(index + 1)}
+                onMouseLeave={() => handleMouseLeave()}
+              />
+            );
+          })}
+          <p>
+            ({starRating} {starRating >= 2 ? "Stars" : "Star"})
+          </p>
+        </div>
+
         <button>Done</button>
       </form>
     </div>
