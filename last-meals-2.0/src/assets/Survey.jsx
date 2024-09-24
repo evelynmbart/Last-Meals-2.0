@@ -1,12 +1,20 @@
 import { useState } from "react";
 import { FaRegStar, FaStar } from "react-icons/fa";
 
-export function Survey({ isSurveyShown, starRating, setStarRating }) {
+export function Survey({ isSurveyShown }) {
   const [hoverValue, setHoverValue] = useState(undefined);
+
   const [isOtherInputShown, setIsOtherInputShown] = useState(false);
   const [userInputOther, setUserInputOther] = useState("");
   const [userInputAccompanied, setUserInputAccompanied] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
+  const [surveyData, setSurveyData] = useState({
+    food: "",
+    meal: "",
+    location: "",
+    company: "",
+    rating: null,
+  });
 
   const handleCheckboxChange = (option) => {
     if (selectedOption === option) {
@@ -19,7 +27,7 @@ export function Survey({ isSurveyShown, starRating, setStarRating }) {
   const stars = Array(5).fill(0);
 
   const handleMouseClicked = (value) => {
-    setStarRating(value);
+    setSurveyData({ ...surveyData, rating: value });
   };
 
   const handleMouseEnter = (value) => {
@@ -30,76 +38,112 @@ export function Survey({ isSurveyShown, starRating, setStarRating }) {
     setHoverValue(undefined);
   };
 
+  const handleSubmit = (e) => {
+    e.preventDefault();
+  };
+
+  console.log(
+    surveyData.food,
+    surveyData.meal,
+    surveyData.location,
+    surveyData.company,
+    surveyData.rating
+  );
+
   return (
     <div
       className="survey-div"
       style={{ display: isSurveyShown ? "block" : "none" }}
     >
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="food">
           <label>What did you eat? </label>
-          <textarea placeholder="I had the best veggie burger and strawberry shake..." />
+          <textarea
+            placeholder="I had the best veggie burger and strawberry shake..."
+            value={surveyData.food}
+            onChange={(e) =>
+              setSurveyData({ ...surveyData, food: e.target.value })
+            }
+          />
         </div>
         <div className="meal">
           <label>What meal was it? </label>
-          <input
+          <button
             className="meal-option"
             id="breakfast"
-            type="button"
-            value="Breakfast"
-          />
-          <input
+            onClick={() => setSurveyData({ ...surveyData, meal: "Breakfast" })}
+          >
+            Breakfast
+          </button>
+          <button
             className="meal-option"
             id="brunch"
-            type="button"
-            value="Brunch"
-          />
-          <input
+            onClick={() => setSurveyData({ ...surveyData, meal: "Brunch" })}
+          >
+            Brunch
+          </button>
+          <button
             className="meal-option"
             id="lunch"
-            type="button"
-            value="Lunch"
-          />
-          <input
+            onClick={() => setSurveyData({ ...surveyData, meal: "Lunch" })}
+          >
+            Lunch
+          </button>
+          <button
             className="meal-option"
             id="dinner"
-            type="button"
-            value="Dinner"
-          />
-          <input
+            onClick={() => setSurveyData({ ...surveyData, meal: "Dinner" })}
+          >
+            Dinner
+          </button>
+          <button
             className="meal-option"
             id="snack"
-            type="button"
-            value="Snack"
-          />
-          <input
+            onClick={() => setSurveyData({ ...surveyData, meal: "Snack" })}
+          >
+            Snack
+          </button>
+          <button
             className="meal-option"
             id="beverage"
-            type="button"
-            value="Beverage"
-          />
-          <input
+            onClick={() => setSurveyData({ ...surveyData, meal: "Beverage" })}
+          >
+            Beverage
+          </button>
+          <button
             className="meal-option"
             id="dessert"
-            type="button"
-            value="Dessert"
-          />
-          <input
+            onClick={() => setSurveyData({ ...surveyData, meal: "Dessert" })}
+          >
+            Dessert
+          </button>
+          <button
             className="meal-option"
             id="other"
-            type="button"
-            value="Other"
             onClick={() => setIsOtherInputShown(!isOtherInputShown)}
-          />
+          >
+            Other
+          </button>
+
           <input
             style={{ display: isOtherInputShown ? "block" : "none" }}
             type="text"
-            onChange={(e) => setUserInputOther(e.target.value)}
+            onChange={(e) =>
+              setSurveyData({ ...surveyData, meal: e.target.value })
+            }
           />
         </div>
         <div className="location">
-          <label>Location? </label>
-          <input className="location" type="text" placeholder="Shake Shack" />
+          <label>Location: </label>
+          <textarea
+            className="location"
+            type="text"
+            placeholder="Shake Shack"
+            value={surveyData.location}
+            onChange={(e) =>
+              setSurveyData({ ...surveyData, location: e.target.value })
+            }
+          />
         </div>
         <div className="accompanied">
           <div className="with-company">
@@ -122,13 +166,24 @@ export function Survey({ isSurveyShown, starRating, setStarRating }) {
             style={{ display: userInputAccompanied ? "block" : "none" }}
             className="who"
           >
-            <label>Who?</label>
+            <label>Who? </label>
             <input
               type="text"
               placeholder="my parents..."
               className="with-who"
+              value={surveyData.company}
+              onChange={(e) =>
+                setSurveyData({ ...surveyData, company: e.target.value })
+              }
             />
           </div>
+        </div>
+        <div className="photos">
+          <label className="photo-label">Want to add any photos?</label>
+          <button className="add-btn">Add</button>
+          <button className="photo-box">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjSI24FqEs8bdQfA1gCZD3Ar2qu8hT_030Vv6YTfAl7HG-8uadoX7Pby2QfKtIdiLPjLY&usqp=CAU" />
+          </button>
         </div>
         <div className="star-rating">
           <div className="star-info">
@@ -138,9 +193,11 @@ export function Survey({ isSurveyShown, starRating, setStarRating }) {
                   key={index}
                   className="star"
                   size={24}
+                  values={surveyData.rating}
                   style={{
                     color:
-                      hoverValue > index || (!hoverValue && starRating > index)
+                      hoverValue > index ||
+                      (!hoverValue && surveyData.rating > index)
                         ? "#f2c265"
                         : "#a9a9a9",
                   }}
@@ -152,7 +209,7 @@ export function Survey({ isSurveyShown, starRating, setStarRating }) {
             })}
           </div>
           <p className="stars">
-            ({starRating} {starRating >= 2 ? "Stars" : "Star"})
+            ({surveyData.rating} {surveyData.rating >= 2 ? "Stars" : "Star"})
           </p>
         </div>
         <button className="done-btn">Done</button>

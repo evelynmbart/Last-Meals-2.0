@@ -5,7 +5,15 @@ import { Survey } from "./assets/Survey";
 
 function App() {
   const [isSurveyShown, setIsSurveyShown] = useState(false);
-  const [starRating, setStarRating] = useState();
+  const [surveyDatas, setSurveyDatas] = useState(
+    Array(31).fill({
+      food: "",
+      meal: "",
+      location: "",
+      company: "",
+      rating: null,
+    })
+  );
 
   const dates = Array(5).fill(0);
   return (
@@ -30,11 +38,7 @@ function App() {
             />
           );
         })}
-        <Survey
-          isSurveyShown={isSurveyShown}
-          starRating={starRating}
-          setStarRating={setStarRating}
-        />
+        <Survey isSurveyShown={isSurveyShown} />
       </div>
     </div>
   );

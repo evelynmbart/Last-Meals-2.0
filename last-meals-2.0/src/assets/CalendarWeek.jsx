@@ -1,4 +1,10 @@
-export function CalendarWeek({ isSurveyShown, setIsSurveyShown, week }) {
+export function CalendarWeek({
+  isSurveyShown,
+  setIsSurveyShown,
+  week,
+  surveyData,
+  setSurveyData,
+}) {
   const days = Array(7).fill(0);
 
   return (
