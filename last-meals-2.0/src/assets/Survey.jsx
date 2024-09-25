@@ -1,20 +1,18 @@
 import { useState } from "react";
-import { FaRegStar, FaStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 
-export function Survey({ isSurveyShown }) {
+export function Survey({
+  index,
+  surveyData,
+  setSurveyData,
+  handleFormSubmit,
+  handleSurveyClosing,
+}) {
   const [hoverValue, setHoverValue] = useState(undefined);
-
   const [isOtherInputShown, setIsOtherInputShown] = useState(false);
-  const [userInputOther, setUserInputOther] = useState("");
   const [userInputAccompanied, setUserInputAccompanied] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
-  const [surveyData, setSurveyData] = useState({
-    food: "",
-    meal: "",
-    location: "",
-    company: "",
-    rating: null,
-  });
+  const [formData, setFormData] = useState(surveyData);
 
   const handleCheckboxChange = (option) => {
     if (selectedOption === option) {
@@ -27,7 +25,7 @@ export function Survey({ isSurveyShown }) {
   const stars = Array(5).fill(0);
 
   const handleMouseClicked = (value) => {
-    setSurveyData({ ...surveyData, rating: value });
+    setFormData({ ...formData, rating: value });
   };
 
   const handleMouseEnter = (value) => {
@@ -40,84 +38,90 @@ export function Survey({ isSurveyShown }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    handleFormSubmit(index, formData);
+    handleSurveyClosing();
   };
 
-  console.log(
-    surveyData.food,
-    surveyData.meal,
-    surveyData.location,
-    surveyData.company,
-    surveyData.rating
-  );
+  // console.log(
+  //   formData.food,
+  //   formData.meal,
+  //   formData.location,
+  //   formData.company,
+  //   formData.rating
+  // );
 
   return (
-    <div
-      className="survey-div"
-      style={{ display: isSurveyShown ? "block" : "none" }}
-    >
+    <div className="survey-div">
       <form onSubmit={handleSubmit}>
+        <h4>{index}</h4>
         <div className="food">
-          <label>What did you eat? </label>
+          <label>What did you have to eat? </label>
           <textarea
             placeholder="I had the best veggie burger and strawberry shake..."
-            value={surveyData.food}
-            onChange={(e) =>
-              setSurveyData({ ...surveyData, food: e.target.value })
-            }
+            value={formData.food}
+            onChange={(e) => setFormData({ ...formData, food: e.target.value })}
           />
         </div>
         <div className="meal">
           <label>What meal was it? </label>
           <button
+            type="button"
             className="meal-option"
             id="breakfast"
-            onClick={() => setSurveyData({ ...surveyData, meal: "Breakfast" })}
+            onClick={() => setFormData({ ...formData, meal: "breakfast" })}
           >
             Breakfast
           </button>
           <button
+            type="button"
             className="meal-option"
             id="brunch"
-            onClick={() => setSurveyData({ ...surveyData, meal: "Brunch" })}
+            onClick={() => setFormData({ ...formData, meal: "brunch" })}
           >
             Brunch
           </button>
           <button
+            type="button"
             className="meal-option"
             id="lunch"
-            onClick={() => setSurveyData({ ...surveyData, meal: "Lunch" })}
+            onClick={() => setFormData({ ...formData, meal: "lunch" })}
           >
             Lunch
           </button>
           <button
+            type="button"
             className="meal-option"
             id="dinner"
-            onClick={() => setSurveyData({ ...surveyData, meal: "Dinner" })}
+            onClick={() => setFormData({ ...formData, meal: "dinner" })}
           >
             Dinner
           </button>
           <button
+            type="button"
             className="meal-option"
             id="snack"
-            onClick={() => setSurveyData({ ...surveyData, meal: "Snack" })}
+            onClick={() => setFormData({ ...formData, meal: "snack" })}
           >
             Snack
           </button>
           <button
+            type="button"
             className="meal-option"
             id="beverage"
-            onClick={() => setSurveyData({ ...surveyData, meal: "Beverage" })}
+            onClick={() => setFormData({ ...formData, meal: "beverage" })}
           >
             Beverage
           </button>
           <button
+            type="button"
             className="meal-option"
             id="dessert"
-            onClick={() => setSurveyData({ ...surveyData, meal: "Dessert" })}
+            onClick={() => setFormData({ ...formData, meal: "dessert" })}
           >
             Dessert
           </button>
           <button
+            type="button"
             className="meal-option"
             id="other"
             onClick={() => setIsOtherInputShown(!isOtherInputShown)}
@@ -128,9 +132,7 @@ export function Survey({ isSurveyShown }) {
           <input
             style={{ display: isOtherInputShown ? "block" : "none" }}
             type="text"
-            onChange={(e) =>
-              setSurveyData({ ...surveyData, meal: e.target.value })
-            }
+            onChange={(e) => setFormData({ ...formData, meal: e.target.value })}
           />
         </div>
         <div className="location">
@@ -139,9 +141,9 @@ export function Survey({ isSurveyShown }) {
             className="location"
             type="text"
             placeholder="Shake Shack"
-            value={surveyData.location}
+            value={formData.location}
             onChange={(e) =>
-              setSurveyData({ ...surveyData, location: e.target.value })
+              setFormData({ ...formData, location: e.target.value })
             }
           />
         </div>
@@ -171,16 +173,18 @@ export function Survey({ isSurveyShown }) {
               type="text"
               placeholder="my parents..."
               className="with-who"
-              value={surveyData.company}
+              value={formData.company}
               onChange={(e) =>
-                setSurveyData({ ...surveyData, company: e.target.value })
+                setFormData({ ...formData, company: e.target.value })
               }
             />
           </div>
         </div>
         <div className="photos">
           <label className="photo-label">Want to add any photos?</label>
-          <button className="add-btn">Add</button>
+          <button className="add-btn" type="button">
+            Add
+          </button>
           <button className="photo-box">
             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjSI24FqEs8bdQfA1gCZD3Ar2qu8hT_030Vv6YTfAl7HG-8uadoX7Pby2QfKtIdiLPjLY&usqp=CAU" />
           </button>
@@ -193,11 +197,11 @@ export function Survey({ isSurveyShown }) {
                   key={index}
                   className="star"
                   size={24}
-                  values={surveyData.rating}
+                  values={formData.rating}
                   style={{
                     color:
                       hoverValue > index ||
-                      (!hoverValue && surveyData.rating > index)
+                      (!hoverValue && formData.rating > index)
                         ? "#f2c265"
                         : "#a9a9a9",
                   }}
@@ -209,11 +213,14 @@ export function Survey({ isSurveyShown }) {
             })}
           </div>
           <p className="stars">
-            ({surveyData.rating} {surveyData.rating >= 2 ? "Stars" : "Star"})
+            ({formData.rating} {formData.rating >= 2 ? "Stars" : "Star"})
           </p>
         </div>
-        <button className="done-btn">Done</button>
+        <button className="done-btn" type="submit">
+          Done
+        </button>
       </form>
+      <button onClick={handleSurveyClosing}>Close</button>
     </div>
   );
 }

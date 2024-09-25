@@ -1,11 +1,15 @@
 export function CalendarWeek({
-  isSurveyShown,
-  setIsSurveyShown,
   week,
-  surveyData,
-  setSurveyData,
+  setisSurveyShown,
+  isSurveyShown,
+  setSelectedDateIndex,
 }) {
   const days = Array(7).fill(0);
+
+  const handleOpeningSurvey = (day) => {
+    setSelectedDateIndex(day);
+    setisSurveyShown(!isSurveyShown);
+  };
 
   return (
     <>
@@ -18,13 +22,12 @@ export function CalendarWeek({
           if (day > 31) {
             return;
           }
-
           return (
             <div className="date-div" key={index}>
               <p>{day}</p>
               <button
                 className="date-btn"
-                onClick={() => setIsSurveyShown(!isSurveyShown)}
+                onClick={() => handleOpeningSurvey(day)}
               ></button>
             </div>
           );
