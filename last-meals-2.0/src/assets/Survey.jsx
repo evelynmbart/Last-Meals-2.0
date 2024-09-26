@@ -4,7 +4,6 @@ import { FaStar } from "react-icons/fa";
 export function Survey({
   index,
   surveyData,
-  setSurveyData,
   handleFormSubmit,
   handleSurveyClosing,
 }) {
@@ -53,7 +52,7 @@ export function Survey({
   return (
     <div className="survey-div">
       <form onSubmit={handleSubmit}>
-        <h4>{index}</h4>
+        <h4>Day {index}</h4>
         <div className="food">
           <label>What did you have to eat? </label>
           <textarea

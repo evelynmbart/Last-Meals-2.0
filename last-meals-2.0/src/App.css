@@ -88,12 +88,22 @@ input {
   background-color: white;
   border: none;
   box-shadow: 1px 1px 1px 1px rgb(207, 194, 178);
+  display: flex;
+  justify-content: center;
+  align-items: end;
 
   /* box-shadow: 1px 1px 1px 1px rgb(207, 194, 178); */
 }
 
 .date-btn:hover {
   box-shadow: inset 1px 1px 1px 1px rgb(207, 194, 178);
+}
+
+.add-meal-btn {
+  font-size: 0.75rem;
+  padding: 5px;
+  border-radius: 10px;
+  margin-bottom: 10px;
 }
 
 .date-div {

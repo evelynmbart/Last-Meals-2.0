@@ -2,20 +2,24 @@ import { useEffect, useState } from "react";
 import "./App.css";
 import { CalendarWeek } from "./assets/CalendarWeek";
 import { Survey } from "./assets/Survey";
+import { MealSummary } from "./assets/MealSummary";
 
 function App() {
-  const initialState = Array.from({ length: 32 }, (_, index) => ({
-    food: "",
-    meal: "",
-    location: "",
-    company: "",
-    rating: null,
-  }));
+  const initialState = Array.from({ length: 32 }, (_, index) => [
+    {
+      food: "",
+      meal: "",
+      location: "",
+      company: "",
+      rating: null,
+    },
+  ]);
   const [surveyData, setSurveyData] = useState(
     () => JSON.parse(localStorage.getItem("surveyData")) || initialState
   );
   const [isSurveyShown, setIsSurveyShown] = useState(false);
   const [selectedDateIndex, setSelectedDateIndex] = useState(null);
+  const [isMealSummaryOpen, setIsMealSummaryOpen] = useState(false);
 
   useEffect(() => {
     localStorage.setItem("surveyData", JSON.stringify(surveyData));
@@ -51,6 +55,8 @@ function App() {
     setIsSurveyShown(false);
   };
 
+  console.log(surveyData[1]);
+
   return (
     <div className="main-content">
       <nav className="navbar">Last Meals</nav>
@@ -72,6 +78,8 @@ function App() {
               setisSurveyShown={setIsSurveyShown}
               isSurveyShown={isSurveyShown}
               setSelectedDateIndex={setSelectedDateIndex}
+              isMealSummaryOpen={isMealSummaryOpen}
+              setIsMealSummaryOpen={setIsMealSummaryOpen}
             />
           );
         })}
@@ -85,6 +93,9 @@ function App() {
             handleFormSubmit={handleFormSubmit}
             handleSurveyClosing={handleSurveyClosing}
           />
+        )}
+        {isMealSummaryOpen && (
+          <MealSummary surveyData={getSurveyData(selectedDateIndex)} />
         )}
       </div>
     </div>
