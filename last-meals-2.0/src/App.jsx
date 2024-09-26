@@ -53,16 +53,17 @@ function App() {
 
   return (
     <div className="main-content">
-      <div className="weekdays">
-        <h2>S</h2>
-        <h2>M</h2>
-        <h2>T</h2>
-        <h2>W</h2>
-        <h2>Th</h2>
-        <h2>F</h2>
-        <h2>S</h2>
-      </div>
+      <nav className="navbar">Last Meals</nav>
       <div className="calendar">
+        <div className="weekdays">
+          <h2 id="sunday">S</h2>
+          <h2 id="monday">M</h2>
+          <h2 id="tuesday">T</h2>
+          <h2 id="wednesday">W</h2>
+          <h2 id="thursday">Th</h2>
+          <h2 id="friday">F</h2>
+          <h2 id="saturday">S</h2>
+        </div>
         {dates.map((_, index) => {
           return (
             <CalendarWeek

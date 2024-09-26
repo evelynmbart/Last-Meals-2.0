@@ -1,10 +1,13 @@
 html {
   height: 100vh;
+  background-color: antiquewhite;
 }
 
 button,
 input {
   cursor: pointer;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 300;
 }
 
 .main-content {
@@ -13,20 +16,61 @@ input {
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 300;
+}
+
+.navbar {
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 600;
+  font-size: 3rem;
+  width: 95%;
+  height: 120px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: antiquewhite;
+  border: 5px solid white;
+  border-radius: 20px;
+  margin-bottom: 20px;
+  color: white;
 }
 
 .calendar {
-  height: 60vh;
+  height: 70vh;
   width: 60vw;
 }
 
 .weekdays {
-  font-size: 1.3rem;
-  width: 60%;
+  font-size: 1.2rem;
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 100;
+  color: rgb(245, 184, 71);
   min-width: 898.8px;
   display: flex;
   justify-content: space-around;
-  align-items: center;
+}
+
+#sunday {
+  color: #67cec0;
+}
+#monday {
+  color: #f88c45;
+}
+#tuesday {
+  color: #5cb143;
+}
+#wednesday {
+  color: #ea5f43;
+}
+#thursday {
+  color: #edea44;
+}
+#friday {
+  color: #9c82d6;
+}
+#saturday {
+  color: #e47b87;
 }
 
 .grid {
@@ -39,8 +83,17 @@ input {
 .date-btn {
   height: 100px;
   width: 100px;
-  border-radius: 20px;
+  border-radius: 30px;
   cursor: pointer;
+  background-color: white;
+  border: none;
+  box-shadow: 1px 1px 1px 1px rgb(207, 194, 178);
+
+  /* box-shadow: 1px 1px 1px 1px rgb(207, 194, 178); */
+}
+
+.date-btn:hover {
+  box-shadow: inset 1px 1px 1px 1px rgb(207, 194, 178);
 }
 
 .date-div {
@@ -65,6 +118,37 @@ form {
   flex-direction: column;
 }
 
+#breakfast {
+  background-color: #67cec0;
+}
+
+#brunch {
+  background-color: #f88c45;
+}
+
+#lunch {
+  background-color: #5cb143;
+}
+
+#dinner {
+  background-color: #ea5f43;
+}
+
+#snack {
+  background-color: #edea44;
+}
+
+#beverage {
+  background-color: #9c82d6;
+}
+
+#dessert {
+  background-color: #e47b87;
+}
+
+#other {
+  background-color: #0381d6;
+}
 textarea,
 .location,
 .with-who {

@@ -186,7 +186,7 @@ export function Survey({
             Add
           </button>
           <button className="photo-box">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTjSI24FqEs8bdQfA1gCZD3Ar2qu8hT_030Vv6YTfAl7HG-8uadoX7Pby2QfKtIdiLPjLY&usqp=CAU" />
+            <img src="https://i.pinimg.com/736x/7f/29/8c/7f298c68656bcd4bbfb58046b3ba54b9.jpg" />
           </button>
         </div>
         <div className="star-rating">
